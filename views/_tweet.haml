@@ -1,0 +1,15 @@
+%article.stream-item{id: "funcan_#{tweet.id_str}"}
+  .tweet
+    .tweet-image
+      %a{href: "http://twitter.com/#{tweet.user.screen_name}"}
+        %img{src: tweet.user.profile_image_url}
+    .tweet-content
+      .tweet-row
+        %span.tweet-user-name
+          = tweet.user.name
+      .tweet-row
+        .tweet-text
+          = tweet.text
+      %time.tweet-row
+        %a.tweet-timestamp{href: "http://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id_str}"}
+          = tweet.created_at
