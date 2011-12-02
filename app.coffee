@@ -9,10 +9,6 @@ TwitterNode = require('twitter-node').TwitterNode
 
 # Configuration
 
-io.configure ->
-  io.set "transports", ["xhr-polling"] # WebSocket doesn't work on Heroku
-  io.set "polling duration", 10
-
 app.configure ->
   app.set 'views', __dirname + '/views'
 #  app.set('view engine', 'jade')
@@ -26,6 +22,9 @@ app.configure 'development', ->
 
 app.configure 'production', ->
   app.use express.errorHandler()
+  io.configure ->
+    io.set "transports", ["xhr-polling"] # WebSocket doesn't work on Heroku
+    io.set "polling duration", 10
 
 app.register '.haml', hamljs
 hamljs.filters.coffee = (str) ->
